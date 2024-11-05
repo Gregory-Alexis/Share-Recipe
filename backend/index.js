@@ -1,15 +1,18 @@
-const express = require('express');
-const cors = require('cors');
-const cookieParser = require('cookie-parser');
-const path = require('path');
+import express from 'express';
+import cors from 'cors';
+import cookieParser from 'cookie-parser';
+import path from 'path';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const app = express();
-const Port = process.env.PORT || 5001;
+const PORT = process.env.PORT || 5173;
 
 app.use(cors({ origin: 'http://localhost:5000', credentials: true }));
 app.use(express.json());
 app.use(cookieParser());
 
-app.listen(Port, () => {
-  console.log(`Server is running on port ${Port}`);
+app.listen(5000, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
