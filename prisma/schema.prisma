@@ -21,18 +21,34 @@ model User {
 }
 
 model Recipe {
-  id              String           @id @default(cuid())
-  title           String           @db.VarChar(50)
-  content         String           @db.VarChar(1000)
-  image_url       String           @db.VarChar(500)
-  user            User             @relation(fields: [userID], references: [id])
+  id              String             @id @default(cuid())
+  title           String             @db.VarChar(50)
+  content         String             @db.VarChar(1000)
+  image_url       String             @db.VarChar(500)
+  user            User               @relation(fields: [userID], references: [id])
   userID          String
   favorite_recipe FavoriteRecipe[]
   Review          Review[]
-  createdAt       DateTime         @default(now())
-  updatedAt       DateTime         @updatedAt
-  ingredient      Ingredient       @relation(fields: [ingredientId], references: [id])
-  ingredientId    String
+  ingredients     RecipeIngredient[]
+  createdAt       DateTime           @default(now())
+  updatedAt       DateTime           @updatedAt
+}
+
+model Ingredient {
+  id        String             @id @default(cuid())
+  name      String
+  recipes   RecipeIngredient[]
+  createdAt DateTime           @default(now())
+  updatedAt DateTime           @updatedAt
+}
+
+model RecipeIngredient {
+  recipe       Recipe     @relation(fields: [recipeId], references: [id])
+  recipeId     String
+  ingredient   Ingredient @relation(fields: [ingredientId], references: [id])
+  ingredientId String
+
+  @@id([recipeId, ingredientId])
 }
 
 model FavoriteRecipe {
@@ -53,14 +69,6 @@ model Review {
   userID    String
   recipe    Recipe   @relation(fields: [recipeID], references: [id])
   recipeID  String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
-model Ingredient {
-  id        String   @id @default(cuid())
-  name      String
-  recipe    Recipe[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
