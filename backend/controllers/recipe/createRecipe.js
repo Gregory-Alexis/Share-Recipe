@@ -14,10 +14,15 @@ export const createRecipe = async (req, res) => {
             id: req.body.userID,
           },
         },
-        ingredient: {
-          connect: {
-            id: req.body.ingredientId,
-          },
+
+        ingredients: {
+          create: req.body.ingredientIds.map((ingredientId) => ({
+            ingredient: {
+              connect: {
+                id: ingredientId,
+              },
+            },
+          })),
         },
       },
     });
