@@ -5,7 +5,6 @@ export const CreateRecipeSchema = z.object({
   content: z.string(),
   image_url: z.string(),
   ingredientIds: z.array(z.string()).optional(),
-  userID: z.string().optional(),
 });
 
 export const UpdateRecipeSchema = z.object({
