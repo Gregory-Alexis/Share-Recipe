@@ -9,6 +9,9 @@ export const updateRecipe = async (req, res) => {
         id: req.params.recipeID,
       },
       data: req.body,
+      include: {
+        ingredients: true,
+      },
     });
 
     res.json({ message: 'Recipe updated', recipe });
