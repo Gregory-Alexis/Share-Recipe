@@ -1,10 +1,12 @@
 import express from 'express';
 import { createReview } from '../controllers/review/createReview.js';
 import { updateReview } from '../controllers/review/updateReview.js';
+import { validateSchema } from '../middleware/zod.js';
+import { CreateReviewSchema, UpdateReviewSchema } from '../schema/review.js';
 
 const reviewRouter = express.Router();
 
-reviewRouter.post('/review', createReview);
-reviewRouter.put('/update/review/:reviewID', updateReview);
+reviewRouter.post('/review', validateSchema(CreateReviewSchema), createReview);
+reviewRouter.put('/update/review/:reviewID', validateSchema(UpdateReviewSchema), updateReview);
 
 export default reviewRouter;
