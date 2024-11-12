@@ -28,7 +28,7 @@ model Recipe {
   user            User               @relation(fields: [userID], references: [id])
   userID          String
   favorite_recipe FavoriteRecipe[]
-  Review          Review[]
+  review          Review[]
   ingredients     RecipeIngredient[]
   createdAt       DateTime           @default(now())
   updatedAt       DateTime           @updatedAt
@@ -36,7 +36,7 @@ model Recipe {
 
 model Ingredient {
   id        String             @id @default(cuid())
-  name      String
+  name      String             @db.VarChar(255)
   recipes   RecipeIngredient[]
   createdAt DateTime           @default(now())
   updatedAt DateTime           @updatedAt
