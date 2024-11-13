@@ -5,17 +5,19 @@ import { deleteRecipe } from '../controllers/recipe/deleteRecipe.js';
 import { validateSchema } from '../middleware/zod.js';
 import { CreateRecipeSchema, UpdateRecipeSchema } from '../schema/recipe.js';
 import { getAllRecipe, getOneRecipe } from '../controllers/recipe/getRecipes.js';
+import verifyToken from '../utils/verifyToken.js';
 
 const recipeRouter = express.Router();
 
 recipeRouter.get('/recipes', getAllRecipe);
-recipeRouter.get('/recipe/:recipeID', getOneRecipe);
-recipeRouter.post('/recipe', validateSchema(CreateRecipeSchema), createRecipe);
+recipeRouter.get('/recipes/:recipeID', getOneRecipe);
+recipeRouter.post('/recipes', validateSchema(CreateRecipeSchema), verifyToken, createRecipe);
 recipeRouter.put(
-  '/user/:userID/update/recipe/:recipeID',
+  '/recipes/:recipeID',
   validateSchema(UpdateRecipeSchema),
+  verifyToken,
   updateRecipe
 );
-recipeRouter.delete('/user/:userID/delete/recipe/:recipeID', deleteRecipe);
+recipeRouter.delete('/recipes/:recipeID', verifyToken, deleteRecipe);
 
 export default recipeRouter;

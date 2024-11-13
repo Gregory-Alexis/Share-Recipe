@@ -5,12 +5,13 @@ import {
   getAllFavoriteRecipes,
   getOneFavoriteRecipe,
 } from '../controllers/favorite_recipe/getFavoriteRecipes.js';
+import verifyToken from '../utils/verifyToken.js';
 
 const favoriteRecipeRouter = express.Router();
 
-favoriteRecipeRouter.get('/user/:userID/favorite/recipe', getAllFavoriteRecipes);
-favoriteRecipeRouter.get('/user/:userID/favorite/recipe/:recipeID', getOneFavoriteRecipe);
-favoriteRecipeRouter.post('/:userID/favorite/recipe/:recipeID', addToFavoriteRecipe);
-favoriteRecipeRouter.delete('/:userID/favorite/recipe/:recipeID', deleteFromFavoriteRecipe);
+favoriteRecipeRouter.get('/favorites', verifyToken, getAllFavoriteRecipes);
+favoriteRecipeRouter.get('/favorites/:recipeID', verifyToken, getOneFavoriteRecipe);
+favoriteRecipeRouter.post('/favorites/:recipeID', verifyToken, addToFavoriteRecipe);
+favoriteRecipeRouter.delete('/favorites/:recipeID', verifyToken, deleteFromFavoriteRecipe);
 
 export default favoriteRecipeRouter;
