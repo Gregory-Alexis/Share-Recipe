@@ -8,10 +8,10 @@ import favoriteRecipeRouter from './favorite_recipe_routes.js';
 
 const router = express.Router();
 
-router.use('/', recipeRouter);
-router.use('/', userRouter);
-router.use('/', reviewRouter);
-router.use('/', ingredientRouter);
-router.use('/', favoriteRecipeRouter);
+router.use('/api', recipeRouter);
+router.use('/api', userRouter);
+router.use('/api', reviewRouter);
+router.use('/api', ingredientRouter);
+router.use('/api', favoriteRecipeRouter);
 
 export default router;
