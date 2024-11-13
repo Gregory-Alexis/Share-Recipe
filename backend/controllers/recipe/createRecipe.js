@@ -3,7 +3,7 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 export const createRecipe = async (req, res) => {
-  const userID = req.body.userID;
+  const userID = req.userID;
 
   try {
     const recipe = await prisma.recipe.create({

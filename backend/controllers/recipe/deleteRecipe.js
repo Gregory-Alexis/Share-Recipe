@@ -4,7 +4,7 @@ const prisma = new PrismaClient();
 
 export const deleteRecipe = async (req, res) => {
   const recipeID = req.params.recipeID;
-  const userID = req.body.userID;
+  const userID = req.userID;
 
   try {
     const recipe = await prisma.recipe.findUnique({
@@ -27,7 +27,7 @@ export const deleteRecipe = async (req, res) => {
       },
     });
 
-    res.status(200).json({ message: 'Recipe deleted' });
+    res.status(200).json({ message: 'Recipe deleted successfully' });
   } catch (error) {
     res.status(400).json({ message: error.message });
   }

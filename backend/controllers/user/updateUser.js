@@ -4,16 +4,19 @@ import bcrypt from 'bcrypt';
 const prisma = new PrismaClient();
 
 export const updateUser = async (req, res) => {
+  const userID = req.userID;
+  const { password } = req.body;
+
   try {
-    if (req.body.password) {
+    if (password) {
       const salt = await bcrypt.genSalt(10);
-      const hashedPassword = await bcrypt.hash(req.body.password, salt);
-      req.body.password = hashedPassword;
+      const hashedPassword = await bcrypt.hash(password, salt);
+      password = hashedPassword;
     }
 
     const user = await prisma.user.update({
       where: {
-        id: req.params.userID,
+        id: userID,
       },
       data: req.body,
     });

@@ -3,6 +3,9 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 export const createReview = async (req, res) => {
+  const recipeID = req.body.recipeID;
+  const userID = req.userID;
+
   try {
     const review = await prisma.review.create({
       data: {
@@ -10,12 +13,12 @@ export const createReview = async (req, res) => {
         content: req.body.content,
         user: {
           connect: {
-            id: req.body.userID,
+            id: userID,
           },
         },
         recipe: {
           connect: {
-            id: req.body.recipeID,
+            id: recipeID,
           },
         },
       },

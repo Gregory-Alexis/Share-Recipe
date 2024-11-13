@@ -1,20 +1,11 @@
-import jwt from 'jsonwebtoken';
 import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
 export const deleteUserAccount = async (req, res) => {
-  const userID = req.params.userID;
-  const token = req.cookies.token;
-
-  if (!token) {
-    return res.status(401).json({ message: 'Authentication token is required' });
-  }
+  const userID = req.userID;
 
   try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    const currentUserID = decoded.userID;
-
     const user = await prisma.user.findUnique({
       where: {
         id: userID,
