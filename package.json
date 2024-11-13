@@ -16,6 +16,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "cookie-parser": "^1.4.7",
     "prisma": "^5.21.1"
   },
   "dependencies": {
