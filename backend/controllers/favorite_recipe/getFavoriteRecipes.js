@@ -3,7 +3,7 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 export const getAllFavoriteRecipes = async (req, res) => {
-  const userID = req.params.userID;
+  const userID = req.userID;
 
   try {
     const favoriteRecipes = await prisma.favoriteRecipe.findMany({
@@ -28,8 +28,8 @@ export const getAllFavoriteRecipes = async (req, res) => {
 };
 
 export const getOneFavoriteRecipe = async (req, res) => {
-  const userID = req.params.userID;
   const recipeID = req.params.recipeID;
+  const userID = req.userID;
 
   try {
     const favoriteRecipe = await prisma.favoriteRecipe.findFirst({
