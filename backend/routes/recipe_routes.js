@@ -11,7 +11,11 @@ const recipeRouter = express.Router();
 recipeRouter.get('/recipes', getAllRecipe);
 recipeRouter.get('/recipe/:recipeID', getOneRecipe);
 recipeRouter.post('/recipe', validateSchema(CreateRecipeSchema), createRecipe);
-recipeRouter.put('/update/recipe/:recipeID', validateSchema(UpdateRecipeSchema), updateRecipe);
-recipeRouter.delete('/delete/recipe/:recipeID', deleteRecipe);
+recipeRouter.put(
+  '/user/:userID/update/recipe/:recipeID',
+  validateSchema(UpdateRecipeSchema),
+  updateRecipe
+);
+recipeRouter.delete('/user/:userID/delete/recipe/:recipeID', deleteRecipe);
 
 export default recipeRouter;
