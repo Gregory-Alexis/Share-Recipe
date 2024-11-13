@@ -3,6 +3,8 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 export const createRecipe = async (req, res) => {
+  const userID = req.body.userID;
+
   try {
     const recipe = await prisma.recipe.create({
       data: {
@@ -11,15 +13,15 @@ export const createRecipe = async (req, res) => {
         image_url: req.body.image_url,
         user: {
           connect: {
-            id: req.body.userID,
+            id: userID,
           },
         },
 
         ingredients: {
-          create: req.body.ingredientIds.map((ingredientId) => ({
+          create: req.body.ingredientIds.map((ingredientID) => ({
             ingredient: {
               connect: {
-                id: ingredientId,
+                id: ingredientID,
               },
             },
           })),
