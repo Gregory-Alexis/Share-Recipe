@@ -4,8 +4,12 @@ const prisma = new PrismaClient();
 
 export const addToFavoriteRecipe = async (req, res) => {
   try {
-    const userID = req.params.userID;
     const recipeID = req.params.recipeID;
+    const userID = req.userID;
+
+    if (!userID || !recipeID) {
+      return res.status(400).json({ message: 'User ID and Recipe ID are required' });
+    }
 
     const user = await prisma.user.findUnique({
       where: { id: userID },
