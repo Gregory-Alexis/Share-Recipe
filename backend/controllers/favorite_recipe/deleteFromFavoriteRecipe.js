@@ -4,8 +4,8 @@ const prisma = new PrismaClient();
 
 export const deleteFromFavoriteRecipe = async (req, res) => {
   try {
-    const userID = req.params.userID;
     const recipeID = req.params.recipeID;
+    const userID = req.userID;
 
     const user = await prisma.user.findUnique({
       where: { id: userID },
