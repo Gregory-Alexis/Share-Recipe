@@ -5,7 +5,7 @@ import {
   getAllFavoriteRecipes,
   getOneFavoriteRecipe,
 } from '../controllers/favorite_recipe/getFavoriteRecipes.js';
-import verifyToken from '../utils/verifyToken.js';
+import verifyToken from '../middleware/verifyToken.js';
 
 const favoriteRecipeRouter = express.Router();
 

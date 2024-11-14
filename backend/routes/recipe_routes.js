@@ -5,7 +5,7 @@ import { deleteRecipe } from '../controllers/recipe/deleteRecipe.js';
 import { validateSchema } from '../middleware/zod.js';
 import { CreateRecipeSchema, UpdateRecipeSchema } from '../schema/recipe.js';
 import { getAllRecipe, getOneRecipe } from '../controllers/recipe/getRecipes.js';
-import verifyToken from '../utils/verifyToken.js';
+import verifyToken from '../middleware/verifyToken.js';
 
 const recipeRouter = express.Router();
 

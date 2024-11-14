@@ -5,7 +5,7 @@ import { updateReview } from '../controllers/review/updateReview.js';
 import { deleteReview } from '../controllers/review/deleteReview.js';
 import { validateSchema } from '../middleware/zod.js';
 import { CreateReviewSchema, UpdateReviewSchema } from '../schema/review.js';
-import verifyToken from '../utils/verifyToken.js';
+import verifyToken from '../middleware/verifyToken.js';
 
 const reviewRouter = express.Router();
 
