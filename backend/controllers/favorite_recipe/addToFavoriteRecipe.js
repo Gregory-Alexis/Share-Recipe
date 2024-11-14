@@ -28,10 +28,7 @@ export const addToFavoriteRecipe = async (req, res) => {
     }
 
     const existInFavorite = await prisma.favoriteRecipe.findFirst({
-      where: {
-        userID: userID,
-        recipeID: recipeID,
-      },
+      where: { userID, recipeID },
     });
 
     if (existInFavorite) {

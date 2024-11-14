@@ -33,10 +33,7 @@ export const getOneFavoriteRecipe = async (req, res) => {
 
   try {
     const favoriteRecipe = await prisma.favoriteRecipe.findFirst({
-      where: {
-        userID: userID,
-        recipeID: recipeID,
-      },
+      where: { userID, recipeID },
       include: {
         recipe: true,
       },

@@ -3,10 +3,12 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 export const getAllRecipe = async (req, res) => {
+  const recipeID = req.body.recipeID;
+
   try {
     const recipes = await prisma.recipe.findMany({
       where: {
-        id: req.body.recipeID,
+        id: recipeID,
       },
       include: {
         review: true,
@@ -25,10 +27,12 @@ export const getAllRecipe = async (req, res) => {
 };
 
 export const getOneRecipe = async (req, res) => {
+  const recipeID = req.body.recipeID;
+
   try {
     const recipe = await prisma.recipe.findUnique({
       where: {
-        id: req.params.recipeID,
+        id: recipeID,
       },
       include: {
         review: true,
