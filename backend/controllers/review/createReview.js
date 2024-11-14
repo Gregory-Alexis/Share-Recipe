@@ -5,12 +5,13 @@ const prisma = new PrismaClient();
 export const createReview = async (req, res) => {
   const recipeID = req.body.recipeID;
   const userID = req.userID;
+  const { rating, content } = req.body;
 
   try {
     const review = await prisma.review.create({
       data: {
-        rating: req.body.rating,
-        content: req.body.content,
+        rating: rating,
+        content: content,
         user: {
           connect: {
             id: userID,
