@@ -26,9 +26,7 @@ export const updateReview = async (req, res) => {
       where: {
         id: reviewID,
       },
-      data: {
-        content: content,
-      },
+      data: { content },
     });
 
     res.status(200).json({ message: 'Review updated successfully', review: updatedReview });
