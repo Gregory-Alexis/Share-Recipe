@@ -10,8 +10,8 @@ export const createReview = async (req, res) => {
   try {
     const review = await prisma.review.create({
       data: {
-        rating: rating,
-        content: content,
+        rating,
+        content,
         user: {
           connect: {
             id: userID,
