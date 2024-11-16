@@ -12,7 +12,15 @@ export const getAllRecipe = async (req, res) => {
       },
       include: {
         review: true,
-        ingredients: true,
+        ingredients: {
+          include: {
+            ingredient: {
+              select: {
+                name: true,
+              },
+            },
+          },
+        },
       },
     });
 
@@ -20,14 +28,14 @@ export const getAllRecipe = async (req, res) => {
       return res.status(404).json({ message: 'Recipes not found' });
     }
 
-    res.status(200).json({ recipes });
+    res.status(200).json(recipes);
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
 };
 
 export const getOneRecipe = async (req, res) => {
-  const recipeID = req.body.recipeID;
+  const recipeID = req.params.recipeID;
 
   try {
     const recipe = await prisma.recipe.findUnique({
@@ -44,7 +52,7 @@ export const getOneRecipe = async (req, res) => {
       return res.status(404).json({ message: 'Recipes not found' });
     }
 
-    res.status(200).json({ recipe });
+    res.status(200).json(recipe);
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
