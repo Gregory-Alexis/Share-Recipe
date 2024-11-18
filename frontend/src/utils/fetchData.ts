@@ -1,5 +1,6 @@
-import { RecipeModel } from './../models/Recipes';
 import axios from 'axios';
+
+import { RecipeModel } from './../models/Recipes';
 
 const API_URL = 'http://localhost:5000/api';
 axios.defaults.withCredentials = true;
