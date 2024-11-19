@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import axios from 'axios';
-import { RecipeStore } from '../models/RecipeFormInputs';
+import { RecipeStore } from '../models/RecipeStore';
 
 const API_URL = 'http://localhost:5000/api';
 
