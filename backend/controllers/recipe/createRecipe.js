@@ -16,16 +16,6 @@ export const createRecipe = async (req, res) => {
             id: userID,
           },
         },
-
-        ingredients: {
-          create: req.body.ingredientIds.map((ingredientID) => ({
-            ingredient: {
-              connect: {
-                id: ingredientID,
-              },
-            },
-          })),
-        },
       },
     });
 
