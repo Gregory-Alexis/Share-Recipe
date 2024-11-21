@@ -3,7 +3,9 @@ export type RecipeStore = {
   user: User | null;
   isLoading: boolean;
   error: string | null;
+  isCheckingAuth: boolean;
   login: (email: string, password: string) => Promise<void>;
+  checkAuth: () => Promise<void>;
 };
 
 export type User = {
