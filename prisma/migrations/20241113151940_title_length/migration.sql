@@ -1,2 +1,0 @@
--- AlterTable
-ALTER TABLE "Recipe" ALTER COLUMN "title" SET DATA TYPE VARCHAR(500);
