@@ -14,7 +14,9 @@ export const checkAuth = async (req, res) => {
       return res.status(401).json({ message: 'User not found' });
     }
 
-    res.status(200).json({ message: 'User authenticated' });
+    delete user.password;
+
+    res.status(200).json({ message: 'User authenticated', user });
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
