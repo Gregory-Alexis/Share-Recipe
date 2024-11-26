@@ -7,11 +7,19 @@ import RecipeDetails from '../components/RecipeDetails';
 import CreateRecipePage from '../pages/createRecipePage';
 import MainLayout from '../layout/MainLayout';
 import RedirectAuthenticatedUser from '../components/RedirectAuthenticatedUser';
+import { ProtectedRoute } from '../components/ProtectedRoute';
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<MainLayout />}>
-      <Route index element={<HomePage />} />
+      <Route
+        index
+        element={
+          <ProtectedRoute>
+            <HomePage />
+          </ProtectedRoute>
+        }
+      />
       <Route
         path='/signup'
         element={
