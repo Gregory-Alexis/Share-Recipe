@@ -14,14 +14,17 @@ export const useRecipeStore = create<RecipeStore>((set) => ({
   isCheckingAuth: true,
   message: null,
 
-  signUp: async (name: string, email: string, password: string) => {
+  signUp: async (firstname: string, lastname: string, email: string, password: string) => {
     set({ isLoading: true, error: null });
+
     try {
       const response = await axios.post(`${API_URL}/signup`, {
-        name,
+        firstname,
+        lastname,
         email,
         password,
       });
+
       set({ user: response.data.user, isAuthenticated: true, isLoading: false, error: null });
     } catch (error: any) {
       const errorMessage = error.response?.data?.message || 'Error signing up';
@@ -31,7 +34,12 @@ export const useRecipeStore = create<RecipeStore>((set) => ({
   },
 
   login: async (email: string, password: string) => {
-    set({ isLoading: true, error: null });
+    set({
+      isAuthenticated: true,
+      isLoading: true,
+      error: null,
+      user: null,
+    });
     try {
       const response = await axios.post(`${API_URL}/login`, { email, password });
       set({
@@ -48,7 +56,7 @@ export const useRecipeStore = create<RecipeStore>((set) => ({
   },
 
   logout: async () => {
-    set({ isLoading: true, error: null });
+    set({ isAuthenticated: false, isLoading: true, error: null, user: null });
     try {
       await axios.post(`${API_URL}/logout`);
       set({ user: null, isAuthenticated: false, error: null, isLoading: false });
@@ -58,14 +66,14 @@ export const useRecipeStore = create<RecipeStore>((set) => ({
       throw error;
     }
   },
-  /*
+
   checkAuth: async () => {
     set({ isCheckingAuth: true, error: null });
     try {
       const response = await axios.get(`${API_URL}/check-auth`);
       set({ user: response.data.user, isAuthenticated: true, isCheckingAuth: false });
-    } catch (error) {
+    } catch (error: any) {
       set({ error: null, isCheckingAuth: false, isAuthenticated: false });
     }
-  },*/
+  },
 }));
