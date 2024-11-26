@@ -15,6 +15,7 @@ const verifyToken = (req, res, next) => {
     }
 
     req.userID = decoded.userID;
+
     next();
   } catch (error) {
     console.error('Error decoding token:', error);
