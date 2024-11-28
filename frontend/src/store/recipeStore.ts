@@ -40,6 +40,7 @@ export const useRecipeStore = create<RecipeStore>((set) => ({
       error: null,
       user: null,
     });
+
     try {
       const response = await axios.post(`${API_URL}/login`, { email, password });
       set({
@@ -61,7 +62,7 @@ export const useRecipeStore = create<RecipeStore>((set) => ({
       await axios.post(`${API_URL}/logout`);
       set({ user: null, isAuthenticated: false, error: null, isLoading: false });
     } catch (error: any) {
-      const errorMessage = 'Error logging out';
+      const errorMessage = error.response?.data?.message || 'Error logging out';
       set({ error: errorMessage, isLoading: false });
       throw error;
     }
