@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useRecipeStore } from '../store/recipeStore';
+import { Link } from 'react-router-dom';
 
 const LoginPage: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -11,8 +12,8 @@ const LoginPage: React.FC = () => {
     e.preventDefault();
     try {
       await login(email, password);
-    } catch (err) {
-      console.error('Login error:', err);
+    } catch (error: any) {
+      throw error;
     }
   };
 
@@ -68,9 +69,9 @@ const LoginPage: React.FC = () => {
 
         <p className='mt-6 text-center text-gray-700'>
           Pas encore de compte ?{' '}
-          <a href='/signup' className='text-orange-500 hover:underline'>
+          <Link to='/signup' className='text-orange-500 hover:underline'>
             Inscrivez-vous
-          </a>
+          </Link>
         </p>
       </form>
     </div>
