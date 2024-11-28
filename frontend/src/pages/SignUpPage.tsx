@@ -1,6 +1,6 @@
 import React from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { SignUpFormInputs } from '../models/signUp';
 import { useRecipeStore } from '../store/recipeStore';
 
@@ -141,9 +141,9 @@ const SignUpPage: React.FC = () => {
 
         <p className='mt-6 text-center text-gray-700'>
           Déjà inscrit ?{' '}
-          <a href='/login' className='text-orange-500 hover:underline'>
+          <Link to='/login' className='text-orange-500 hover:underline'>
             Connectez-vous
-          </a>
+          </Link>
         </p>
       </form>
     </div>
