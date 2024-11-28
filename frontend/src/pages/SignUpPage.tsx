@@ -21,7 +21,7 @@ const SignUpPage: React.FC = () => {
       signUp(data.firstname, data.lastname, data.email, data.password);
       navigate('/');
     } catch (error: any) {
-      throw error;
+      throw new Error(`Error signing up :' ${error.message}`);
     }
   };
 

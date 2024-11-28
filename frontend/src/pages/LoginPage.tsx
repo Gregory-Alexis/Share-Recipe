@@ -13,7 +13,7 @@ const LoginPage: React.FC = () => {
     try {
       await login(email, password);
     } catch (error: any) {
-      throw error;
+      throw new Error(`Error logging in: ${error.message}`);
     }
   };
 
