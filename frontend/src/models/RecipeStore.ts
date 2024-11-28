@@ -7,6 +7,7 @@ export type RecipeStore = {
   login: (email: string, password: string) => Promise<void>;
   logout: () => Promise<void>;
   checkAuth: () => Promise<void>;
+  signUp: (firstname: string, lastname: string, email: string, password: string) => Promise<void>;
 };
 
 export type User = {
